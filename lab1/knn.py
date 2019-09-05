@@ -1,21 +1,46 @@
 import mnist
 import numpy as np
 import time
+import math
+
 
 class knn(object):
     # Constructor
     def __init__(self,k=3,weighted=True,classify=True):  
+        self.training_set = None
         self.k = k
         self.weighted = weighted
         self.classify = classify
         
-    def fit(self,x,y):  
+    def fit(self,x,y):
         self.x_train = x.astype(np.float32)
         self.y_train = y
-    
+        # use every skip-th ex; for development uses
+        skip = 50
+        self.x_train = self.x_train[::skip]
+        self.y_train = self.y_train[::skip]
+        self.training_set = np.zeros(shape=self.x_train.shape)
+        print(self.training_set.shape)
+
     def predict(self,x_test):
-        return np.random(len(x_test))
-    
+        if self.classify:
+            if self.weighted:
+                print("hi")
+            else:
+                print("bye")
+        else:
+            if self.weighted:
+                print("ok")
+            else:
+                print("no")
+        return np.random.rand(len(x_test))
+
+    # calculate the euclidean distance between point x1 and x2
+    def distance(self,x1, x2):
+        d = 0
+        for x in range(x1.shape):
+            d += pow((x1[x] - x2[x]), 2)
+        return math.sqrt(d)
     
 if __name__ == "__main__":  
     print('MNIST dataset')
