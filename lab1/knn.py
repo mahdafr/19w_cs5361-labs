@@ -35,10 +35,11 @@ if __name__ == "__main__":
     print('Accuracy:',np.sum(pred==y_test)/len(y_test))
     
     print('\nSolar particle dataset')
-    x_train = np.load('x_ray_data_train.npy')
-    y_train = np.load('x_ray_target_train.npy')
-    x_test = np.load('x_ray_data_test.npy')
-    y_test = np.load('x_ray_target_test.npy')
+    dir = 'D:\Google Drive\skool\CS 5361\datasets\lab1\\'
+    x_train = np.load(dir + 'x_ray_data_train.npy')
+    y_train = np.load(dir + 'x_ray_target_train.npy')
+    x_test = np.load(dir + 'x_ray_data_test.npy')
+    y_test = np.load(dir + 'x_ray_target_test.npy')
     model = knn(classify=False)
         
     start = time.time()

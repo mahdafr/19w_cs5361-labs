@@ -5,6 +5,8 @@ __pycache__/
 
 #npy files
 *.npy
+*.gz
+*.pkl
 #pycharm dir
 .idea/
 
