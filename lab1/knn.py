@@ -1,5 +1,5 @@
 import mnist
-import numpy as np
+import cupy as np
 import time
 import math
 
@@ -10,85 +10,114 @@ class knn(object):
         self.k = k
         self.weighted = weighted
         self.classify = classify
-        self.neighbor = None    # the list of the distances
-        self.sorted = None  # the sorted locations for distances
+        # @author mmafr
+        self.n_matrix = None    # the list of the distances
+        self.n_weights = None
+        self.n_labels = None
 
+    # train the model
     def fit(self, x, y):
         self.x_train = x.astype(np.float32)
         self.y_train = y
         # fixme: remove when done testing
-        skip = 50
+        skip = 100
         self.x_train = self.x_train[::skip]
         self.y_train = self.y_train[::skip]
 
     # test the model
+    # @author mmafr
     def predict(self, x_test):
+        s = ' (weighted)' if self.weighted else ''
+        print('Classification' + s if self.classify else 'Regression' + s)
         self.buildNeighborList(x_test)
-        # x_test = x_test[::self.skip]    # fixme: remove when done testing
-        # if self.classify:
-        #     return self.classifier(x_test)
-        # else:
-        #     return self.regression(x_test)
+        if self.classify:
+            return self.classifier(x_test)
+        else:
+            return self.regression(x_test)
 
     # KNN classifier: weighted or unweighted?
+    # @author mmafr
     def classifier(self, test):
-        neighbors = self.neighbor[:self.k]
-        weight = np.ones(neighbors.shape[0])    # weights for each distance pair
-        pred = np.zeros(test.shape[0])
-        V = np.unique(self.y_train)
+        guess = np.zeros(test.shape[0])
+        V = np.unique(self.y_train)     # every possible class
         for x in range(test.shape[0]):
-            if self.weighted:   # if weighted, w=1/d(x,xi)
-                weight[x] = 1/self.neighbor[x]
-            for v in range(V):
-                pred[x] += weight*self.delta(v,self.y_train[x])
-        return pred
+            for v in range(V.shape[0]):     # for each label
+                votes = np.zeros(V.shape[0])  # sums up to k
+                for i in range(self.k):     # for each neighbor
+                    d = self.delta(v, int(self.n_labels[x][i]))
+                    w = self.n_weights[x][i]
+                    votes[V[int(self.n_labels[x][i])]] += w*d
+            guess[x] = np.amax(votes)
+        return guess
 
-    # determine whether the values are equal or not
+    # @author mmafr
     def delta(self, a, b):
-        if a == b:
-            return 1
-        return 0
+        return 1 if a == b else 0
 
     # KNN regression: weighted or unweighted?
+    # @author mmafr
     def regression(self, test):
-        neighbors = self.neighbor[:self.k]
         mean = np.zeros(test.shape[0])
-        weight = np.ones(neighbors.shape[0])    # weights for each distance pair
         for x in range(test.shape[0]):  # for each test example
-            if self.weighted:   # if weighted, w=1/d(x,xi)
-                weight[x] = 1/self.neighbor[x]
-            mean[x] = np.sum(neighbors[:self.k]*weight[:self.k])    # get the sum for the neighbors, weighted/not
-        if self.weighted:   # if weighted, divide by the sum of the weights
-            mean = mean/np.sum(weight)
-        else:   # if not weighted, divide by k
+            mean[x] = np.sum(self.n_weights[x]*self.n_labels[x])
+        if self.weighted:   # divide by sum of the weights
+            mean = mean/np.sum(self.n_weights)
+        else:   # divide by k
             mean = mean/self.k
         return mean
 
-    # calculate the distances from each training point to other training points
+    # calculate the distances from each test point to other points
+    # @author mmafr
     def buildNeighborList(self, test):
-        self.neighbor = np.zeros(test.shape[0])
-        print(self.neighbor.shape)
-        for x1 in range(test.shape[0]):
-            for x2 in range(self.x_train.shape[0]):
-                self.neighbor[x1] = (self.distance(test[x1], self.x_train[x2]))
-                print(x1)
-                print(x2)
-        self.sorted = np.sort(self.neighbor)  # save indices of sorted neighbors
-        print(self.sorted.shape)
+        n_tmp = np.zeros(shape=(test.shape[0], self.x_train.shape[0]))
+        for x1 in range(test.shape[0]):     # foreach test sample
+            for x2 in range(self.x_train.shape[0]):     # for each train point
+                n_tmp[x1][x2] = (self.distance(test[x1], self.x_train[x2]))
+        srtd = np.argsort(n_tmp, axis=1)    # sort list of neighbors
+        # build the knn matrix and weights
+        self.k_neighbors(n_tmp, srtd)
+        self.weights()
+        print("Built neighbor matrix.")
 
     # calculate the euclidean distance between point x1 and x2
+    # @author mmafr
     def distance(self, x1, x2):
         d = 0
         for f in range(len(x1)):
             d += pow((x1[f] - x2[f]), 2)
         return math.sqrt(d)
 
+    # determines the list of the k nearest-neighbors
+    # @author mmafr
+    def k_neighbors(self, neighbors, nearest):
+        # each test sample has k nearest neighbors
+        self.n_matrix = np.zeros(shape=(neighbors.shape[0], self.k))
+        self.n_labels = np.zeros(self.n_matrix.shape)
+        for i in range(self.n_matrix.shape[0]):
+            for j in range(self.k):
+                self.n_matrix[i][j] = neighbors[i][nearest[i][j]]
+                self.n_labels[i][j] = self.y_train[int(nearest[i][j])]
 
-if __name__ == "__main__":  
+    # get the weights, list of ones if not
+    #  @author mmafr
+    def weights(self):
+        self.n_weights = np.ones(self.n_matrix.shape)
+        if self.weighted:  # if weighted, w=1/d(x,xi)
+            self.n_weights = 1/self.n_matrix
+        # mask = np.isin(self.sorted, self.neighbor)
+        # weight = 1/weight[mask]
+
+
+if __name__ == "__main__":
+    TESTS = 20
     print('MNIST dataset')
     x_train, y_train, x_test, y_test = mnist.load()
-    model = knn(weighted=False)
-    
+    x_test = x_test[:TESTS]
+    y_test = y_test[:TESTS]
+    print('Training size= ' + str(x_train.shape[0]))
+    print('Testing size= ' + str(x_test.shape[0]))
+    model = knn(classify=True, weighted=True)
+
     start = time.time()
     model.fit(x_train, y_train)
     elapsed_time = time.time()-start
@@ -98,7 +127,8 @@ if __name__ == "__main__":
     pred = model.predict(x_test)
     elapsed_time = time.time()-start
     print('Elapsed_time testing  {0:.6f} '.format(elapsed_time))   
-    
+
+    y_test = np.asarray(y_test)     # for CuPy
     print('Accuracy:', np.sum(pred == y_test)/len(y_test))
     
     print('\nSolar particle dataset')
@@ -107,16 +137,21 @@ if __name__ == "__main__":
     y_train = np.load(dir + 'x_ray_target_train.npy')
     x_test = np.load(dir + 'x_ray_data_test.npy')
     y_test = np.load(dir + 'x_ray_target_test.npy')
-    model = knn(classify=False)
-        
+    y_test = np.asarray(y_test)  # for CuPy
+    x_test = x_test[:TESTS]
+    y_test = y_test[:TESTS]
+    print('Training size= ' + str(x_train.shape[0]))
+    print('Testing size= ' + str(x_test.shape[0]))
+    model = knn(classify=False, weighted=True)
+
     start = time.time()
     model.fit(x_train, y_train)
     elapsed_time = time.time()-start
-    print('Elapsed_time training  {0:.6f} '.format(elapsed_time))  
-    
-    start = time.time()       
+    print('Elapsed_time training  {0:.6f} '.format(elapsed_time))
+
+    start = time.time()
     pred = model.predict(x_test)
     elapsed_time = time.time()-start
-    print('Elapsed_time testing  {0:.6f} '.format(elapsed_time))   
-    
+    print('Elapsed_time testing  {0:.6f} '.format(elapsed_time))
+
     print('Mean square error:', np.mean(np.square(pred-y_test)))
