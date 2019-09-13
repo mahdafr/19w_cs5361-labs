@@ -7,5 +7,11 @@ The `lab1` directory contains the following files:
 - `knn.py` which is the provided script to modify for building a k-nearest-neighbors predictor model
 - `mnist.py` which is the provided script to load the mnist dataset for training/testing
 - `zeroR.py` which is the provided script containing a predictor model
+- `report.py` which is my submitted report for this assignment
+### To Run
+Run the `mnist.py` code first. Then, run `knn.py`. See datasets for any additional files required to run the program.
 ### Datasets
-The dataset used for this program is the MNIST dataset.
+The dataset used for this program is the MNIST dataset and the Solar particle dataset, as provided by the instructor on the course webpage.
+### Results
+Experimental results for this assignment can be found in [this Google sheets](http://bit.ly/19w_cs5361-results)* document, in the `lab1-knn` sheet.
+<br>\*_This document may not be available after the course end date._ 
