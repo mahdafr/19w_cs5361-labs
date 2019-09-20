@@ -19,9 +19,10 @@ Experimental results for this assignment can be found in [this Google sheets](ht
 ## Lab 2: Decision Trees
 The `lab2` directory contains the following files:
 - `magic04.txt` which is the provided dataset
-- `decision_tree.py` which is the  provided script to modify for building a decision tree
+- `decision_tree.py` which is the  provided script to modify for building a decision tree classification model
+- `regression_tree.py` which is the provided script to modify for building a decision tree regression model
 ### To Run
-Run the `decision_tree.py` program first. 
+Compile the `decision_tree.py` program or the `regression_tree.py` program, or both to your preference.
 ### Datasets
 The dataset used for this program is provided by the instructor on the course webpage.
 ### Results
