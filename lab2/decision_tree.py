@@ -1,6 +1,7 @@
 # Program to build a one-node decision tree
 # Programmed by Olac Fuentes
 # Last modified September 16, 2019
+import sys
 
 import numpy as np
 import time
@@ -56,26 +57,59 @@ class DecisionTreeClassifier(object):
         if depth >= self.max_depth or len(y) <= self.min_samples_split or max(
                 [mean_val, 1 - mean_val]) >= self.min_accuracy:
             return int(round(mean_val))
+
+        # @author mahdafr for part2-part3
+        thr, best_att = self._threshold3(x, y, orig_entropy)
+
+        less = x[:, best_att] <= thr[best_att]
+        more = ~ less
+        # @author mahdafr for part1
+        lx = x[less]; ly = y[less]  # int(round(np.mean(y[less])))
+        rx = x[more]; ry = y[more]  # int(round(np.mean(y[more])))
+        return DecisionTreeNode(best_att, thr[best_att], self._id3(lx,ly,depth+1), self._id3(rx,ry,depth+1))
+
+    # original code
+    def _threshold(self, x, y, orig_entropy):
         thr = np.mean(x, axis=0)
         entropy_attribute = np.zeros(len(thr))
 
-        # foreach training example, find the attr w/best entropy
+        # foreach training example, find entropy for each attribute
         for i in range(x.shape[1]):
             less = x[:, i] <= thr[i]
             more = ~ less
             entropy_attribute[i] = self._entropy(y[less], y[more])
         gain = orig_entropy - entropy_attribute
+        # print('Gain:',gain)
+        return thr, np.argmax(gain)
 
-        print('Gain:',gain)
-        best_att = np.argmax(gain)
-        less = x[:, best_att] <= thr[best_att]
-        more = ~ less
-        lx = x[less]; ly = y[less]  # int(round(np.mean(y[less])))
-        rx = x[more]; ry = y[more]  # int(round(np.mean(y[more])))
-        return DecisionTreeNode(best_att, thr[best_att], self._id3(lx,ly,depth+1), self._id3(rx,ry,depth+1))
+    # @author mahdafr for part3
+    def _threshold3(self, x, y, orig_entropy):
+        thr = []    # np.mean(x, axis=1)
 
-    def _build_tree(self):
-        pass
+        # @author mahdafr for part2
+        # generate random values for each attribute
+        VALS = 20
+        for i in range(x.shape[1]):
+            thr.append(np.random.uniform(min(x[:,i]),max(x[:,i]),size=(VALS)))
+        thr = np.asarray(thr)
+        entropy_attribute = np.zeros(len(thr))
+
+        thresh = []
+        # find entropy
+        for i in range(x.shape[1]):
+            m = sys.maxsize; ind = 0
+            for j in range(len(thr[i])):
+                less = x[:, i] <= thr[i][j]
+                more = ~ less
+                new = self._entropy(y[less], y[more])
+                if new<m:
+                    m = new
+                    ind = j
+            thresh.append(thr[i][ind])
+            entropy_attribute[i] = m
+        gain = orig_entropy - entropy_attribute
+        # print('Gain:',gain)
+        return np.asarray(thresh), np.argmax(gain)
 
     def _entropy(self, l, m):
         ent = 0
@@ -101,8 +135,7 @@ class DecisionTreeClassifier(object):
         self.root.print_tree()
 
 
-x = []
-y = []
+x = []; y = []
 infile = open("magic04.txt", "r")
 for line in infile:
     y.append(int(line[-2:-1] == 'g'))
@@ -117,30 +150,34 @@ x = xa
 x = np.array(x).astype(np.float32)
 y = np.array(y)
 
-# Split data into training and testing
-ind = np.random.permutation(len(y))
-split_ind = int(len(y) * 0.8)
-x_train = x[ind[:split_ind]]
-x_test = x[ind[split_ind:]]
-y_train = y[ind[:split_ind]]
-y_test = y[ind[split_ind:]]
+TESTS = 100
+test_acc = 0; train_acc = 0
+test_time = 0; train_time = 0
+print('Tests  ' + str(TESTS))
+for i in range(TESTS):
+    # Split data into training and testing
+    ind = np.random.permutation(len(y))
+    split_ind = int(len(y) * 0.8)
+    x_train = x[ind[:split_ind]]
+    x_test = x[ind[split_ind:]]
+    y_train = y[ind[:split_ind]]
+    y_test = y[ind[split_ind:]]
 
+    model = DecisionTreeClassifier()
+    start = time.time()
+    model.fit(x_train, y_train)
+    train_time += time.time() - start
 
-model = DecisionTreeClassifier()
-start = time.time()
-model.fit(x_train, y_train)
-elapsed_time = time.time() - start
-print('Elapsed_time training  {0:.6f} '.format(elapsed_time))
+    train_pred = model.predict(x_train)
+    start = time.time()
+    test_pred = model.predict(x_test)
+    test_time += time.time() - start
 
-train_pred = model.predict(x_train)
-start = time.time()
-test_pred = model.predict(x_test)
-elapsed_time = time.time() - start
-print('Elapsed_time testing  {0:.6f} '.format(elapsed_time))
+    train_acc += np.sum(train_pred == y_train) / len(train_pred)
+    test_acc += np.sum(test_pred == y_test) / len(test_pred)
+    # model.display()
 
-train_acc = np.sum(train_pred == y_train) / len(train_pred)
-print('train accuracy:', train_acc)
-test_acc = np.sum(test_pred == y_test) / len(test_pred)
-print('test accuracy:', test_acc)
-
-model.display()
+print('Elapsed_time training  {0:.6f} '.format(train_time/TESTS))
+print('Elapsed_time testing  {0:.6f} '.format(test_time/TESTS))
+print('train accuracy:', train_acc/TESTS)
+print('test accuracy:', test_acc/TESTS)

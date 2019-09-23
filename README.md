@@ -9,7 +9,9 @@ The `lab1` directory contains the following files:
 - `zeroR.py` which is the provided script containing a predictor model
 - `report.py` which is my submitted report for this assignment
 ### To Run
-Run the `mnist.py` code first. Then, run `knn.py`. See datasets for any additional files required to run the program.
+1. Modify the `dir` variable in the `knn.py` script to direct the path to your downloaded datasets.
+2. Run the `mnist.py` code first.
+3. Run `knn.py`. See datasets for any additional files required to run the program.
 ### Datasets
 The dataset used for this program is the MNIST dataset and the Solar particle dataset, as provided by the instructor on the course webpage.
 ### Results
@@ -22,7 +24,8 @@ The `lab2` directory contains the following files:
 - `decision_tree.py` which is the  provided script to modify for building a decision tree classification model
 - `regression_tree.py` which is the provided script to modify for building a decision tree regression model
 ### To Run
-Compile the `decision_tree.py` program or the `regression_tree.py` program, or both to your preference.
+1. Modify the `dir` variable in the `regression_tree.py` program to direct the path to your solar particle dataset.
+2. Compile the `decision_tree.py` program or the `regression_tree.py` program, or both to your preference.
 ### Datasets
 The dataset used for this program is provided by the instructor on the course webpage.
 ### Results
