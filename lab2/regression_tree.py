@@ -82,7 +82,6 @@ class DecisionTreeRegressor(object):
         return thr, np.argmax(gain)
 
     # @author mahdafr for part5
-
     def _threshold5(self,x,y,orig_mse):
         thr = []    # np.mean(x, axis=1)
 
