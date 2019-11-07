@@ -7,6 +7,8 @@ __pycache__/
 *.npy
 *.gz
 *.pkl
+classwork/*
+
 #pycharm dir
 .idea/
 

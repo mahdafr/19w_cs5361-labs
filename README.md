@@ -20,6 +20,7 @@ Experimental results for this assignment can be found in [this Google sheets](ht
 
 ## Lab 2: Decision Trees
 The `lab2` directory contains the following files:
+- `_instr.pdf` which contains the instructions for the assignment
 - `magic04.txt` which is the provided dataset
 - `decision_tree.py` which is the  provided script to modify for building a decision tree classification model
 - `regression_tree.py` which is the provided script to modify for building a decision tree regression model
@@ -30,4 +31,52 @@ The `lab2` directory contains the following files:
 The dataset used for this program is provided by the instructor on the course webpage.
 ### Results
 Experimental results for this assignment can be found in [this Google sheets](http://bit.ly/19w_cs5361-results)* document, in the `lab2-dectree` sheet.
-<br>\*_This document may not be available after the course end date._ 
+<br>\*_This document may not be available after the course end date._
+
+## Lab 3: Decision and Regression Trees
+The `lab3` directory contains the following files:
+- `_instr.pdf` which contains the instructions for the assignment
+- `decision_tree.py` which is the  provided script to modify for building a decision tree classification model
+- `regression_tree.py` which is the provided script to modify for building a decision tree regression model
+### To Run
+1. Modify the `dir` variables in the `regression_tree.py` and `decision_tree.py` programs to direct the path to a dataset of your choice.
+2. Compile the `decision_tree.py` program or the `regression_tree.py` program, or both to your preference.
+### Datasets
+The dataset used for this program is provided by the instructor on the course webpage.
+### Results
+Experimental results for this assignment can be found in [this Google sheets](http://bit.ly/19w_cs5361-results)* document, in the `lab2-dectree` sheet.
+<br>\*_This document may not be available after the course end date._
+
+## Lab 4: The scikit library
+The `lab4` directory contains the following files:
+- `_instr.pdf` which contains the instructions for the assignment
+- `__init__.py` which is the main script to compile the program
+- `dataset.py` which contains the Dataset class that loads and stores the datasets for use in the program
+- `dectree.py` which contains the classification and regressor predictor models for decision trees
+- `forest.py` which contains the classification and regressor predictor models for forests
+- `knn.py` which contains the classification and regressor predictor models for knn
+- `logreg.py` which contains the classification and regressor predictor models for logistic regression
+- `svm.py` which contains the classification and regressor predictor models for support vector machine <br>
+For information about the other files in this directory, see the _Results_ section below.
+### To Run
+1. Modify the `dataset.py` script to access the dataset(s) of your choice
+2. Compile the `__init__.py` program or the `regression_tree.py` program, or both to your preference.
+### Datasets
+The datasets used for this program are provided by the instructor on the course webpage.
+### Results
+Experimental results for this assignment can be found in the `res.txt` and `results.txt` files included in the `lab4` directory.
+
+## Lab 5: The keras library
+The `lab5` directory contains the following files:
+- `_instr.pdf` which contains the instructions for the assignment
+- `__init__.py` which is the main script to compile the program
+- `cnn.py` which contains the code to develop and test convolutional neural networks on two datasets: MNIST and CIFAR-10
+- `dnn.py` which contains the code to develop and test fully connected dense neural networks on two datasets: solar particle and gamma ray
+For information about the other files in this directory, see the _Results_ section below.
+### To Run
+1. Modify the `dataset.py` script to access the dataset(s) of your choice
+2. Compile the `__init__.py` program or the `regression_tree.py` program, or both to your preference.
+### Datasets
+The datasets used for this program are either provided by the instructor on the course webpage (solar particle and gamma ray) or imported via the keras library (MNIST and CIFAR-10).
+### Results
+Experimental results for this assignment can be found in the `lab5\lab5.txt` file or, for specific runs, in the respective `lab5\results` directory containing `test##.txt` files.
