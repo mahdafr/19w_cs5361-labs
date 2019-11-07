@@ -1,2 +1,286 @@
-
-====================RUN====================
+====================BASELINE====================
+MNIST Dataset
+	Test loss:	0.2033149960268056
+	Test accuracy:	0.949999988079071
+CIFAR-10 Dataset
+	Test loss:	1.74551607131958
+	Test accuracy:	0.3779999911785126
+Gamma Ray Dataset
+	Test loss:	0.3264335124713264
+	Test accuracy:	0.8688222765922546
+Solar Particle Dataset
+	Test loss:	0.002684836270400317
+	Test accuracy:	0.002684835810214281
+====================EPOCHS=10 and BATCH=64====================
+MNIST Dataset
+	Test loss:	0.20166063567996026
+	Test accuracy:	0.9399999976158142
+CIFAR-10 Dataset
+	Test loss:	1.871814416885376
+	Test accuracy:	0.3319999873638153
+Gamma Ray Dataset
+	Test loss:	0.3270508146812487
+	Test accuracy:	0.8638275265693665
+Solar Particle Dataset
+	Test loss:	0.0027650051171591848
+	Test accuracy:	0.002765005687251687
+====================EPOCHS=20 and BATCH=64====================
+MNIST Dataset
+	Test loss:	0.18252830282400828
+	Test accuracy:	0.9549999833106995
+CIFAR-10 Dataset
+	Test loss:	1.7600789222717286
+	Test accuracy:	0.37299999594688416
+Gamma Ray Dataset
+	Test loss:	0.31898922580524447
+	Test accuracy:	0.8727654814720154
+Solar Particle Dataset
+	Test loss:	0.002400499522536541
+	Test accuracy:	0.0024005004670470953
+====================EPOCHS=20 and BATCH=32====================
+MNIST Dataset
+	Test loss:	0.22952986404742115
+	Test accuracy:	0.9620000123977661
+CIFAR-10 Dataset
+	Test loss:	1.6021039085388185
+	Test accuracy:	0.42100000381469727
+Gamma Ray Dataset
+	Test loss:	0.3131692068245885
+	Test accuracy:	0.8725026249885559
+Solar Particle Dataset
+	Test loss:	0.0029448420242818786
+	Test accuracy:	0.0029448422137647867
+====================lr=0.00001====================
+MNIST Dataset
+	Test loss:	2.3050318870544433
+	Test accuracy:	0.04600000008940697
+CIFAR-10 Dataset
+	Test loss:	2.1344755268096924
+	Test accuracy:	0.24799999594688416
+Gamma Ray Dataset
+	Test loss:	0.6864556440795634
+	Test accuracy:	0.6388012766838074
+Solar Particle Dataset
+	Test loss:	0.005395572928307413
+	Test accuracy:	0.0053955730982124805
+====================lr=0.0001====================
+MNIST Dataset
+	Test loss:	2.2835522422790526
+	Test accuracy:	0.15199999511241913
+CIFAR-10 Dataset
+	Test loss:	1.6457064132690429
+	Test accuracy:	0.4000000059604645
+Gamma Ray Dataset
+	Test loss:	0.4181014224495171
+	Test accuracy:	0.8125657439231873
+Solar Particle Dataset
+	Test loss:	0.0024881587933206976
+	Test accuracy:	0.0024881584104150534
+====================OPTIMIZER=Adam(0.001,0.9,0.9,True)====================
+MNIST Dataset
+	Test loss:	0.14960666154325009
+	Test accuracy:	0.9549999833106995
+CIFAR-10 Dataset
+	Test loss:	1.5381969566345215
+	Test accuracy:	0.5009999871253967
+Gamma Ray Dataset
+	Test loss:	0.3497646746199214
+	Test accuracy:	0.8562039732933044
+Solar Particle Dataset
+	Test loss:	0.002302768434288298
+	Test accuracy:	0.0023027691058814526
+====================OPTIMIZER=RMSprop(0.001,0.95)====================
+MNIST Dataset
+	Test loss:	0.2076838918272406
+	Test accuracy:	0.9480000138282776
+CIFAR-10 Dataset
+	Test loss:	1.968968759536743
+	Test accuracy:	0.5099999904632568
+Gamma Ray Dataset
+	Test loss:	0.33830418864697936
+	Test accuracy:	0.8619873523712158
+Solar Particle Dataset
+	Test loss:	0.002698075604699472
+	Test accuracy:	0.0026980757247656584
+====================OPTIMIZER=SGD(0.001,0.95)====================
+MNIST Dataset
+	Test loss:	0.26782922601699827
+	Test accuracy:	0.9150000214576721
+CIFAR-10 Dataset
+	Test loss:	1.6760293521881104
+	Test accuracy:	0.3610000014305115
+Gamma Ray Dataset
+	Test loss:	0.3931408202986612
+	Test accuracy:	0.8212407827377319
+Solar Particle Dataset
+	Test loss:	0.0032646094468362927
+	Test accuracy:	0.0032646101899445057
+====================OPTIMIZER=SGD(0.001,0.9)====================
+MNIST Dataset
+	Test loss:	0.3080648651123047
+	Test accuracy:	0.8999999761581421
+CIFAR-10 Dataset
+	Test loss:	1.9060619316101075
+	Test accuracy:	0.32100000977516174
+Gamma Ray Dataset
+	Test loss:	0.3898989673543302
+	Test accuracy:	0.8262355327606201
+Solar Particle Dataset
+	Test loss:	0.0027574200328688864
+	Test accuracy:	0.0027574205305427313
+====================OPTIMIZER=SGD(0.001,0.99)====================
+MNIST Dataset
+	Test loss:	0.20371548786759378
+	Test accuracy:	0.9430000185966492
+CIFAR-10 Dataset
+	Test loss:	1.6449309587478638
+	Test accuracy:	0.4090000092983246
+Gamma Ray Dataset
+	Test loss:	0.33594530034265807
+	Test accuracy:	0.8538380861282349
+Solar Particle Dataset
+	Test loss:	0.002295911524618594
+	Test accuracy:	0.0022959113121032715
+====================DNN=dropout 0.25/0.5, CNN=average pooling====================
+MNIST Dataset
+	Test loss:	0.21637056646496058
+	Test accuracy:	0.9440000057220459
+CIFAR-10 Dataset
+	Test loss:	1.6874108514785766
+	Test accuracy:	0.40799999237060547
+Gamma Ray Dataset
+	Test loss:	0.382723280151309
+	Test accuracy:	0.8372765779495239
+Solar Particle Dataset
+	Test loss:	0.006816590334676985
+	Test accuracy:	0.006816590204834938
+====================DROPOUT=cnn, REGULARIZER=l1(0.01)====================
+MNIST Dataset
+	Test loss:	6.657203727722168
+	Test accuracy:	0.8149999976158142
+CIFAR-10 Dataset
+	Test loss:	2.740941619873047
+	Test accuracy:	0.30399999022483826
+Gamma Ray Dataset
+	Test loss:	0.4575451757566911
+	Test accuracy:	0.8033648729324341
+Solar Particle Dataset
+	Test loss:	0.002197560825612094
+	Test accuracy:	0.0021975613199174404
+====================DROPOUT=cnn, REGULARIZER=l1(0.001)====================
+MNIST Dataset
+	Test loss:	1.1329331970214844
+	Test accuracy:	0.9200000166893005
+CIFAR-10 Dataset
+	Test loss:	2.587445068359375
+	Test accuracy:	0.3840000033378601
+Gamma Ray Dataset
+	Test loss:	0.3789300787273391
+	Test accuracy:	0.8472660183906555
+Solar Particle Dataset
+	Test loss:	0.0023858133180347033
+	Test accuracy:	0.002385813044384122
+====================DROPOUT=cnn, REGULARIZER=l2(0.01)====================
+MNIST Dataset
+	Test loss:	0.35575629472732545
+	Test accuracy:	0.9330000281333923
+CIFAR-10 Dataset
+	Test loss:	2.1127293300628662
+	Test accuracy:	0.3889999985694885
+Gamma Ray Dataset
+	Test loss:	0.3776466163300315
+	Test accuracy:	0.8459516167640686
+Solar Particle Dataset
+	Test loss:	0.0029834440907065356
+	Test accuracy:	0.0029834448359906673
+====================DROPOUT=cnn, REGULARIZER=l1_l2(0.01)====================
+MNIST Dataset
+	Test loss:	6.895468616485596
+	Test accuracy:	0.8899999856948853
+CIFAR-10 Dataset
+	Test loss:	2.7509627075195313
+	Test accuracy:	0.296999990940094
+Gamma Ray Dataset
+	Test loss:	0.44614886642129137
+	Test accuracy:	0.8325446844100952
+Solar Particle Dataset
+	Test loss:	0.0022045229421315472
+	Test accuracy:	0.002204522956162691
+====================REGULARIZER=l2(0.001)====================
+MNIST Dataset
+	Test loss:	0.20234678518772126
+	Test accuracy:	0.9459999799728394
+CIFAR-10 Dataset
+	Test loss:	2.0736179714202883
+	Test accuracy:	0.3700000047683716
+Gamma Ray Dataset
+	Test loss:	0.3310737712338144
+	Test accuracy:	0.8690851926803589
+Solar Particle Dataset
+	Test loss:	0.0023399400699330463
+	Test accuracy:	0.0023399400524795055
+====================REGULARIZER=l1_l2(0.001)====================
+MNIST Dataset
+	Test loss:	1.1410066237449645
+	Test accuracy:	0.9319999814033508
+CIFAR-10 Dataset
+	Test loss:	2.379932746887207
+	Test accuracy:	0.3199999928474426
+Gamma Ray Dataset
+	Test loss:	0.3504410573486023
+	Test accuracy:	0.8596214652061462
+Solar Particle Dataset
+	Test loss:	0.0022541015877359087
+	Test accuracy:	0.002254100516438484
+====================INITIALIZER=glorot, REGULARIZER=l1(0.001)====================
+MNIST Dataset
+	Test loss:	1.059780813217163
+	Test accuracy:	0.9369999766349792
+CIFAR-10 Dataset
+	Test loss:	2.946888275146484
+	Test accuracy:	0.35600000619888306
+Gamma Ray Dataset
+	Test loss:	0.35844093664587484
+	Test accuracy:	0.8543637990951538
+Solar Particle Dataset
+	Test loss:	0.002166296949436154
+	Test accuracy:	0.0021662963554263115
+====================cifar=(mnist_api), INITIALIZER=glorot, REGULARIZER=l1(0.001)====================
+MNIST Dataset
+	Test loss:	1.1025150485038757
+	Test accuracy:	0.9269999861717224
+CIFAR-10 Dataset
+	Test loss:	2.9654430847167967
+	Test accuracy:	0.375
+Gamma Ray Dataset
+	Test loss:	0.3475605948552975
+	Test accuracy:	0.8596214652061462
+Solar Particle Dataset
+	Test loss:	0.002448825745698463
+	Test accuracy:	0.0024488253984600306
+====================INITIALIZER=he_normal, REGULARIZER=l1(0.001)====================
+MNIST Dataset
+	Test loss:	1.1788410530090332
+	Test accuracy:	0.921999990940094
+CIFAR-10 Dataset
+	Test loss:	3.0432017879486084
+	Test accuracy:	0.3529999852180481
+Gamma Ray Dataset
+	Test loss:	0.3443324990515704
+	Test accuracy:	0.8654048442840576
+Solar Particle Dataset
+	Test loss:	0.0033433067572826197
+	Test accuracy:	0.003343307413160801
+====================INITIALIZER=he_normal, REGULARIZER=l1_l2(0.001)====================
+MNIST Dataset
+	Test loss:	1.148011573791504
+	Test accuracy:	0.9359999895095825
+CIFAR-10 Dataset
+	Test loss:	2.925820430755615
+	Test accuracy:	0.3869999945163727
+Gamma Ray Dataset
+	Test loss:	0.3577635688109854
+	Test accuracy:	0.8562039732933044
+Solar Particle Dataset
+	Test loss:	0.002595808519941572
+	Test accuracy:	0.00259580765850842

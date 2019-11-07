@@ -98,6 +98,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+tensorflow-env/
 
 # Spyder project settings
 .spyderproject
