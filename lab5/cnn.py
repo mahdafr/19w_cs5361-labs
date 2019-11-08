@@ -1,5 +1,5 @@
 import keras
-from keras.initializers import glorot_normal, he_normal
+from keras.initializers import glorot_normal, he_normal, he_uniform
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Flatten, Activation, AveragePooling2D
 from keras.layers import Conv2D, MaxPooling2D
@@ -61,7 +61,7 @@ def _tester_cifar(model, input_shape):
     model.add(MaxPooling2D(pool_size=(2, 2)))
     model.add(Dropout(0.25))
     model.add(Flatten())
-    model.add(Dense(128, activation='relu', kernel_initializer=he_normal(23), kernel_regularizer=regularizers.l1_l2(0.001)))
+    model.add(Dense(128, activation='relu', kernel_initializer=he_uniform(23), kernel_regularizer=regularizers.l1_l2(0.001)))
     model.add(Dropout(0.5))
     model.add(Dense(num_classes, activation='softmax'))
     model.summary()
@@ -113,7 +113,7 @@ def _tester_mnist(model, input_shape):
     model.add(MaxPooling2D(pool_size=(2, 2)))
     model.add(Dropout(0.25))
     model.add(Flatten())
-    model.add(Dense(128, activation='relu', kernel_initializer=he_normal(23), kernel_regularizer=regularizers.l1_l2(0.001)))
+    model.add(Dense(128, activation='relu', kernel_initializer=he_uniform(23), kernel_regularizer=regularizers.l1_l2(0.001)))
     model.add(Dropout(0.5))
     model.add(Dense(num_classes, activation='softmax'))
     model.summary()

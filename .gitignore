@@ -8,6 +8,7 @@ __pycache__/
 *.gz
 *.pkl
 classwork/*
+_dataset/*
 
 #pycharm dir
 .idea/

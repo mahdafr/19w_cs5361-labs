@@ -1,6 +1,5 @@
-from classwork import read_gamma
-from classwork import read_mnist
-from classwork import read_solar
+from _dataset import read_gamma, read_solar, read_mnist
+
 
 # Holds all datasets for testing/training
 class Data(object):

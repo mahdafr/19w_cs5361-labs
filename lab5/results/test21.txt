@@ -1,0 +1,256 @@
+D:\Projects\cs5361-labs\venv\Scripts\python.exe "C:\Program Files\JetBrains\PyCharm 2019.2.1\helpers\pydev\pydevconsole.py" --mode=client --port=49765
+import sys; print('Python %s on %s' % (sys.version, sys.platform))
+sys.path.extend(['D:\\Projects\\cs5361-labs', 'D:/Projects/cs5361-labs'])
+PyDev console: starting.
+Python 3.7.4 (tags/v3.7.4:e09359112e, Jul  8 2019, 20:34:20) [MSC v.1916 64 bit (AMD64)] on win32
+runfile('D:/Projects/cs5361-labs/lab5/__init__.py', wdir='D:/Projects/cs5361-labs/lab5')
+Using TensorFlow backend.
+Read MNIST Dataset
+Read CIFAR-10 Dataset
+MNIST CNN
+2019-11-07 16:05:04.445053: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2
+Model: "sequential_1"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv2d_1 (Conv2D)            (None, 26, 26, 32)        320       
+_________________________________________________________________
+conv2d_2 (Conv2D)            (None, 24, 24, 64)        18496     
+_________________________________________________________________
+max_pooling2d_1 (MaxPooling2 (None, 12, 12, 64)        0         
+_________________________________________________________________
+dropout_1 (Dropout)          (None, 12, 12, 64)        0         
+_________________________________________________________________
+flatten_1 (Flatten)          (None, 9216)              0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 128)               1179776   
+_________________________________________________________________
+dropout_2 (Dropout)          (None, 128)               0         
+_________________________________________________________________
+dense_2 (Dense)              (None, 10)                1290      
+=================================================================
+Total params: 1,199,882
+Trainable params: 1,199,882
+Non-trainable params: 0
+_________________________________________________________________
+Train on 2000 samples, validate on 1000 samples
+Epoch 1/20
+ - 6s - loss: 4.2109 - accuracy: 0.6000 - val_loss: 2.2507 - val_accuracy: 0.6950
+Epoch 2/20
+ - 5s - loss: 2.0085 - accuracy: 0.7800 - val_loss: 1.8332 - val_accuracy: 0.8330
+Epoch 3/20
+ - 5s - loss: 1.7639 - accuracy: 0.8370 - val_loss: 1.7877 - val_accuracy: 0.8100
+Epoch 4/20
+ - 5s - loss: 1.6207 - accuracy: 0.8635 - val_loss: 1.4730 - val_accuracy: 0.8950
+Epoch 5/20
+ - 5s - loss: 1.5642 - accuracy: 0.8695 - val_loss: 1.4596 - val_accuracy: 0.8950
+Epoch 6/20
+ - 5s - loss: 1.4932 - accuracy: 0.8860 - val_loss: 1.4018 - val_accuracy: 0.8980
+Epoch 7/20
+ - 5s - loss: 1.4411 - accuracy: 0.8925 - val_loss: 1.4082 - val_accuracy: 0.8980
+Epoch 8/20
+ - 5s - loss: 1.4210 - accuracy: 0.8970 - val_loss: 1.3561 - val_accuracy: 0.9080
+Epoch 9/20
+ - 5s - loss: 1.3522 - accuracy: 0.9035 - val_loss: 1.2983 - val_accuracy: 0.9080
+Epoch 10/20
+ - 5s - loss: 1.3367 - accuracy: 0.9015 - val_loss: 1.3320 - val_accuracy: 0.8910
+Epoch 11/20
+ - 5s - loss: 1.3260 - accuracy: 0.9050 - val_loss: 1.3690 - val_accuracy: 0.8770
+Epoch 12/20
+ - 5s - loss: 1.2923 - accuracy: 0.8990 - val_loss: 1.2690 - val_accuracy: 0.9260
+Epoch 13/20
+ - 5s - loss: 1.2688 - accuracy: 0.9195 - val_loss: 1.2317 - val_accuracy: 0.9300
+Epoch 14/20
+ - 5s - loss: 1.2651 - accuracy: 0.9115 - val_loss: 1.2081 - val_accuracy: 0.9280
+Epoch 15/20
+ - 5s - loss: 1.2774 - accuracy: 0.9080 - val_loss: 1.1986 - val_accuracy: 0.9260
+Epoch 16/20
+ - 5s - loss: 1.2339 - accuracy: 0.9180 - val_loss: 1.2157 - val_accuracy: 0.9280
+Epoch 17/20
+ - 5s - loss: 1.2415 - accuracy: 0.9210 - val_loss: 1.2336 - val_accuracy: 0.9180
+Epoch 18/20
+ - 5s - loss: 1.2016 - accuracy: 0.9180 - val_loss: 1.1852 - val_accuracy: 0.9210
+Epoch 19/20
+ - 5s - loss: 1.2022 - accuracy: 0.9190 - val_loss: 1.1824 - val_accuracy: 0.9240
+Epoch 20/20
+ - 5s - loss: 1.1956 - accuracy: 0.9140 - val_loss: 1.1716 - val_accuracy: 0.9290
+CIFAR-10 CNN
+Model: "sequential_2"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv2d_3 (Conv2D)            (None, 30, 30, 32)        896       
+_________________________________________________________________
+conv2d_4 (Conv2D)            (None, 28, 28, 64)        18496     
+_________________________________________________________________
+max_pooling2d_2 (MaxPooling2 (None, 14, 14, 64)        0         
+_________________________________________________________________
+dropout_3 (Dropout)          (None, 14, 14, 64)        0         
+_________________________________________________________________
+flatten_2 (Flatten)          (None, 12544)             0         
+_________________________________________________________________
+dense_3 (Dense)              (None, 128)               1605760   
+_________________________________________________________________
+dropout_4 (Dropout)          (None, 128)               0         
+_________________________________________________________________
+dense_4 (Dense)              (None, 10)                1290      
+=================================================================
+Total params: 1,626,442
+Trainable params: 1,626,442
+Non-trainable params: 0
+_________________________________________________________________
+Train on 2000 samples, validate on 1000 samples
+Epoch 1/20
+ - 9s - loss: 5.0043 - accuracy: 0.1420 - val_loss: 3.1710 - val_accuracy: 0.1630
+Epoch 2/20
+ - 7s - loss: 3.0979 - accuracy: 0.1925 - val_loss: 3.1316 - val_accuracy: 0.1980
+Epoch 3/20
+ - 7s - loss: 3.0711 - accuracy: 0.2050 - val_loss: 3.2415 - val_accuracy: 0.1980
+Epoch 4/20
+ - 7s - loss: 3.0477 - accuracy: 0.2460 - val_loss: 3.1421 - val_accuracy: 0.2200
+Epoch 5/20
+ - 7s - loss: 3.0182 - accuracy: 0.2790 - val_loss: 2.9972 - val_accuracy: 0.3260
+Epoch 6/20
+ - 8s - loss: 2.9967 - accuracy: 0.2980 - val_loss: 2.9806 - val_accuracy: 0.3350
+Epoch 7/20
+ - 8s - loss: 2.9558 - accuracy: 0.3100 - val_loss: 2.9545 - val_accuracy: 0.3170
+Epoch 8/20
+ - 8s - loss: 2.9666 - accuracy: 0.3010 - val_loss: 3.0449 - val_accuracy: 0.2550
+Epoch 9/20
+ - 8s - loss: 2.9430 - accuracy: 0.3160 - val_loss: 2.8615 - val_accuracy: 0.3520
+Epoch 10/20
+ - 9s - loss: 2.9322 - accuracy: 0.3195 - val_loss: 2.8694 - val_accuracy: 0.3510
+Epoch 11/20
+ - 10s - loss: 2.9184 - accuracy: 0.3400 - val_loss: 2.8487 - val_accuracy: 0.3600
+Epoch 12/20
+ - 9s - loss: 2.8988 - accuracy: 0.3430 - val_loss: 2.9093 - val_accuracy: 0.3180
+Epoch 13/20
+ - 8s - loss: 2.8924 - accuracy: 0.3310 - val_loss: 2.9478 - val_accuracy: 0.3020
+Epoch 14/20
+ - 8s - loss: 2.8815 - accuracy: 0.3440 - val_loss: 3.0991 - val_accuracy: 0.2480
+Epoch 15/20
+ - 7s - loss: 2.8670 - accuracy: 0.3470 - val_loss: 3.0426 - val_accuracy: 0.2510
+Epoch 16/20
+ - 7s - loss: 2.8545 - accuracy: 0.3565 - val_loss: 2.8858 - val_accuracy: 0.3280
+Epoch 17/20
+ - 7s - loss: 2.8622 - accuracy: 0.3590 - val_loss: 2.8800 - val_accuracy: 0.3510
+Epoch 18/20
+ - 8s - loss: 2.8747 - accuracy: 0.3425 - val_loss: 2.8904 - val_accuracy: 0.3690
+Epoch 19/20
+ - 8s - loss: 2.8802 - accuracy: 0.3755 - val_loss: 2.8718 - val_accuracy: 0.3740
+Epoch 20/20
+ - 8s - loss: 2.8730 - accuracy: 0.3780 - val_loss: 2.8801 - val_accuracy: 0.3970
+Read Gamma Ray Dataset
+Read Solar Particle Dataset
+Gamma Ray DNN
+Model: "sequential_3"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+dense_5 (Dense)              (None, 10)                110       
+_________________________________________________________________
+dense_6 (Dense)              (None, 10)                110       
+_________________________________________________________________
+dense_7 (Dense)              (None, 1)                 11        
+=================================================================
+Total params: 231
+Trainable params: 231
+Non-trainable params: 0
+_________________________________________________________________
+Train on 7608 samples, validate on 3804 samples
+Epoch 1/20
+ - 0s - loss: 0.7160 - accuracy: 0.7579 - val_loss: 0.5604 - val_accuracy: 0.8060
+Epoch 2/20
+ - 0s - loss: 0.4891 - accuracy: 0.8203 - val_loss: 0.4439 - val_accuracy: 0.8289
+Epoch 3/20
+ - 0s - loss: 0.4144 - accuracy: 0.8358 - val_loss: 0.4038 - val_accuracy: 0.8362
+Epoch 4/20
+ - 0s - loss: 0.3869 - accuracy: 0.8470 - val_loss: 0.3889 - val_accuracy: 0.8452
+Epoch 5/20
+ - 0s - loss: 0.3794 - accuracy: 0.8461 - val_loss: 0.3811 - val_accuracy: 0.8488
+Epoch 6/20
+ - 0s - loss: 0.3752 - accuracy: 0.8460 - val_loss: 0.3881 - val_accuracy: 0.8399
+Epoch 7/20
+ - 0s - loss: 0.3677 - accuracy: 0.8528 - val_loss: 0.3815 - val_accuracy: 0.8496
+Epoch 8/20
+ - 0s - loss: 0.3621 - accuracy: 0.8540 - val_loss: 0.3729 - val_accuracy: 0.8520
+Epoch 9/20
+ - 0s - loss: 0.3602 - accuracy: 0.8588 - val_loss: 0.3692 - val_accuracy: 0.8562
+Epoch 10/20
+ - 0s - loss: 0.3563 - accuracy: 0.8586 - val_loss: 0.3676 - val_accuracy: 0.8562
+Epoch 11/20
+ - 0s - loss: 0.3611 - accuracy: 0.8550 - val_loss: 0.3653 - val_accuracy: 0.8573
+Epoch 12/20
+ - 0s - loss: 0.3574 - accuracy: 0.8562 - val_loss: 0.3644 - val_accuracy: 0.8559
+Epoch 13/20
+ - 0s - loss: 0.3543 - accuracy: 0.8586 - val_loss: 0.3828 - val_accuracy: 0.8467
+Epoch 14/20
+ - 0s - loss: 0.3543 - accuracy: 0.8604 - val_loss: 0.3647 - val_accuracy: 0.8575
+Epoch 15/20
+ - 0s - loss: 0.3547 - accuracy: 0.8557 - val_loss: 0.3607 - val_accuracy: 0.8573
+Epoch 16/20
+ - 0s - loss: 0.3481 - accuracy: 0.8611 - val_loss: 0.3748 - val_accuracy: 0.8525
+Epoch 17/20
+ - 1s - loss: 0.3512 - accuracy: 0.8592 - val_loss: 0.3584 - val_accuracy: 0.8586
+Epoch 18/20
+ - 1s - loss: 0.3493 - accuracy: 0.8625 - val_loss: 0.3586 - val_accuracy: 0.8562
+Epoch 19/20
+ - 1s - loss: 0.3452 - accuracy: 0.8628 - val_loss: 0.3558 - val_accuracy: 0.8625
+Epoch 20/20
+ - 1s - loss: 0.3438 - accuracy: 0.8640 - val_loss: 0.3594 - val_accuracy: 0.8567
+Solar Particle DNN
+Model: "sequential_4"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+dense_8 (Dense)              (None, 30)                1530      
+_________________________________________________________________
+dense_9 (Dense)              (None, 30)                930       
+_________________________________________________________________
+dense_10 (Dense)             (None, 1)                 31        
+=================================================================
+Total params: 2,491
+Trainable params: 2,491
+Non-trainable params: 0
+_________________________________________________________________
+Train on 27108 samples, validate on 9887 samples
+Epoch 1/20
+ - 1s - loss: 0.0180 - mse: 0.0180 - val_loss: 0.0075 - val_mse: 0.0075
+Epoch 2/20
+ - 1s - loss: 0.0048 - mse: 0.0048 - val_loss: 0.0036 - val_mse: 0.0036
+Epoch 3/20
+ - 1s - loss: 0.0052 - mse: 0.0052 - val_loss: 0.0058 - val_mse: 0.0058
+Epoch 4/20
+ - 2s - loss: 0.0053 - mse: 0.0053 - val_loss: 0.0030 - val_mse: 0.0030
+Epoch 5/20
+ - 1s - loss: 0.0054 - mse: 0.0054 - val_loss: 0.0028 - val_mse: 0.0028
+Epoch 6/20
+ - 1s - loss: 0.0049 - mse: 0.0049 - val_loss: 0.0033 - val_mse: 0.0033
+Epoch 7/20
+ - 1s - loss: 0.0051 - mse: 0.0051 - val_loss: 0.0030 - val_mse: 0.0030
+Epoch 8/20
+ - 1s - loss: 0.0050 - mse: 0.0050 - val_loss: 0.0036 - val_mse: 0.0036
+Epoch 9/20
+ - 1s - loss: 0.0041 - mse: 0.0041 - val_loss: 0.0031 - val_mse: 0.0031
+Epoch 10/20
+ - 1s - loss: 0.0058 - mse: 0.0058 - val_loss: 0.0032 - val_mse: 0.0032
+Epoch 11/20
+ - 1s - loss: 0.0039 - mse: 0.0039 - val_loss: 0.0029 - val_mse: 0.0029
+Epoch 12/20
+ - 1s - loss: 0.0046 - mse: 0.0046 - val_loss: 0.0029 - val_mse: 0.0029
+Epoch 13/20
+ - 2s - loss: 0.0045 - mse: 0.0045 - val_loss: 0.0030 - val_mse: 0.0030
+Epoch 14/20
+ - 2s - loss: 0.0038 - mse: 0.0038 - val_loss: 0.0049 - val_mse: 0.0049
+Epoch 15/20
+ - 2s - loss: 0.0044 - mse: 0.0044 - val_loss: 0.0028 - val_mse: 0.0028
+Epoch 16/20
+ - 2s - loss: 0.0061 - mse: 0.0061 - val_loss: 0.0040 - val_mse: 0.0040
+Epoch 17/20
+ - 2s - loss: 0.0042 - mse: 0.0042 - val_loss: 0.0030 - val_mse: 0.0030
+Epoch 18/20
+ - 1s - loss: 0.0035 - mse: 0.0035 - val_loss: 0.0032 - val_mse: 0.0032
+Epoch 19/20
+ - 1s - loss: 0.0040 - mse: 0.0040 - val_loss: 0.0027 - val_mse: 0.0027
+Epoch 20/20
+ - 1s - loss: 0.0037 - mse: 0.0037 - val_loss: 0.0029 - val_mse: 0.0029

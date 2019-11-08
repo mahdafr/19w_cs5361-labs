@@ -1,4 +1,4 @@
-import classwork.dataset as d
+import _dataset.dataset as d
 from lab5 import cnn, dnn
 
 # writes results to file
@@ -9,7 +9,7 @@ def report(test, score, f):
 
 if __name__ == "__main__":
     # FIXME for each test IMPLEMENT AND DO THIS TEST
-    mods = 'INITIALIZER=he_normal, REGULARIZER=l1_l2(0.001)'
+    mods = 'INITIALIZER=he_uniform, REGULARIZER=l1_l2(0.001)'
     # run the tests
     f = open("lab5.txt", "a")
     f.write('\n===================='+mods+'====================')
