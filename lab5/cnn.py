@@ -1,5 +1,5 @@
 import keras
-from keras.initializers import glorot_normal, he_normal, he_uniform
+from keras.initializers import glorot_normal, he_normal, he_uniform, glorot_uniform
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Flatten, Activation, AveragePooling2D
 from keras.layers import Conv2D, MaxPooling2D
@@ -54,20 +54,34 @@ def fit_and_eval(X,Y,x,y,model,shuffle=False):
 
 """ FOR CIFAR """
 def _tester_cifar(model, input_shape):
-    model.add(Conv2D(32, kernel_size=(3, 3),
-                     activation='relu',
+    model.add(Conv2D(32, (3, 3), padding='same',
                      input_shape=input_shape))
-    model.add(Conv2D(64, (3, 3), activation='relu'))
+    model.add(Activation('elu'))
+    model.add(Conv2D(32, (3, 3)))
+    model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
     model.add(Dropout(0.25))
-    model.add(Flatten())
-    model.add(Dense(128, activation='relu', kernel_initializer=he_uniform(23), kernel_regularizer=regularizers.l1_l2(0.001)))
-    model.add(Dropout(0.5))
-    model.add(Dense(num_classes, activation='softmax'))
-    model.summary()
 
-    model.compile(loss=keras.losses.categorical_crossentropy,
-                  optimizer=RMSprop(),
+    model.add(Conv2D(64, (3, 3), padding='same'))
+    model.add(Activation('elu'))
+    model.add(Conv2D(64, (3, 3)))
+    model.add(Activation('relu'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+    model.add(Dropout(0.25))
+
+    model.add(Flatten())
+    model.add(Dense(512))
+    model.add(Activation('relu'))
+    model.add(Dropout(0.5))
+    model.add(Dense(num_classes))
+    model.add(Activation('softmax'))
+
+    # initiate RMSprop optimizer
+    opt = keras.optimizers.RMSprop(learning_rate=0.0001, decay=1e-6)
+
+    # Let's train the model using RMSprop
+    model.compile(loss='categorical_crossentropy',
+                  optimizer=opt,
                   metrics=['accuracy'])
     return model
 
@@ -107,14 +121,15 @@ def _baseline_cifar(model, input_shape):
 """ FOR MNIST """
 def _tester_mnist(model, input_shape):
     model.add(Conv2D(32, kernel_size=(3, 3),
-                     activation='relu',
+                     activation='elu',
                      input_shape=input_shape))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+    # model.add(Dropout(0.2))
     model.add(Conv2D(64, (3, 3), activation='relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
-    model.add(Dropout(0.25))
+    # model.add(Dropout(0.2))
     model.add(Flatten())
-    model.add(Dense(128, activation='relu', kernel_initializer=he_uniform(23), kernel_regularizer=regularizers.l1_l2(0.001)))
-    model.add(Dropout(0.5))
+    model.add(Dense(128, activation='sigmoid'))
     model.add(Dense(num_classes, activation='softmax'))
     model.summary()
 

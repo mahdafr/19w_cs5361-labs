@@ -297,3 +297,29 @@ Gamma Ray Dataset
 Solar Particle Dataset
 	Test loss:	0.00288161422033965
 	Test accuracy:	0.002881614724174142
+====================INITIALIZER=glorot_uniform, REGULARIZER=l1_l2(0.001)====================
+MNIST Dataset
+	Test loss:	1.1574806060791016
+	Test accuracy:	0.9330000281333923
+CIFAR-10 Dataset
+	Test loss:	2.9575838413238524
+	Test accuracy:	0.3709999918937683
+Gamma Ray Dataset
+	Test loss:	0.3504365905100866
+	Test accuracy:	0.8625131249427795
+Solar Particle Dataset
+	Test loss:	0.002408129971949482
+	Test accuracy:	0.002408128697425127
+====================dnn=elu, relu, sigmoid, cifar=elu,relu elu, relu, relu,softmax, mnist=elu,relu,sigmoid,softmax====================
+MNIST Dataset
+	Test loss:	0.1278367787860334
+	Test accuracy:	0.9660000205039978
+CIFAR-10 Dataset
+	Test loss:	1.5427808532714844
+	Test accuracy:	0.43700000643730164
+Gamma Ray Dataset
+	Test loss:	0.31659587205521816
+	Test accuracy:	0.8682965040206909
+Solar Particle Dataset
+	Test loss:	0.002301047092089486
+	Test accuracy:	0.0023010470904409885

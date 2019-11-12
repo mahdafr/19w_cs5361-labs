@@ -9,7 +9,7 @@ def report(test, score, f):
 
 if __name__ == "__main__":
     # FIXME for each test IMPLEMENT AND DO THIS TEST
-    mods = 'INITIALIZER=he_uniform, REGULARIZER=l1_l2(0.001)'
+    mods = 'dnn=elu, relu, sigmoid, cifar=elu,relu elu, relu, relu,softmax, mnist=elu,relu,sigmoid,softmax'
     # run the tests
     f = open("lab5.txt", "a")
     f.write('\n===================='+mods+'====================')
