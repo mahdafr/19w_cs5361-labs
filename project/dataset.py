@@ -1,10 +1,12 @@
 import numpy as np
 import pandas as pd
-import os
+import os, math
 
 # fixme: change to dataset location
 d = "D:\\Google Drive\\skool\\CS 5361\\datasets\\project\\"
 f = "mbti.csv"
+rand = np.random.randint(0,100000)
+chop = 0.01
 
 class Dataset(object):
     def __init__(self, first_time=False, lo=0.71, hi=0.77, to_load=''):
@@ -27,12 +29,13 @@ class Dataset(object):
     def _read(self, to_load):
         # find the npy files
         lst = os.listdir(d)
-        file = [i for i, s in enumerate(lst) if to_load+'npy' in s]
+        # and ('baseline' not in s) and ('main' not in s) for non-spec use
+        file = [i for i, s in enumerate(lst) if (to_load+'npy' in s)]
         # todo randomly load from list of test/train sets
-        self.X = np.load(d+lst[file[0]])
-        self.Y = np.load(d+lst[file[1]])
-        self.x = np.load(d+lst[file[2]])
-        self.y = np.load(d+lst[file[3]])
+        self.X = np.load(d+lst[file[1]], allow_pickle=True)
+        self.Y = np.load(d+lst[file[3]], allow_pickle=True)
+        self.x = np.load(d+lst[file[0]], allow_pickle=True)
+        self.y = np.load(d+lst[file[2]], allow_pickle=True)
         print('Loaded',self.X.shape[0],'train, ',self.x.shape[0],'test samples.')
 
     """ Break the data into target values and training samples """
@@ -61,14 +64,16 @@ class Dataset(object):
         np.save(d+ 'Y_' +str(self.X.shape[0]) + name,self.Y)
         np.save(d+ 'x_' +str(self.x.shape[0]) + name,self.x)
         np.save(d+ 'y_' +str(self.x.shape[0]) + name,self.y)
-        print('Saved npy files to ' +d)
+        print('Saved npy files to ' +d+name)
 
     """ Getter methods: testing and training data """
     def train(self):
-        return self.X, self.Y
+        print('Using',math.ceil(chop*self.X.shape[0]),'training samples.')
+        return self.X[:rand+math.ceil(chop*self.X.shape[0])], self.Y[:rand+math.ceil(chop*self.Y.shape[0])]
 
     def test(self):
-        return self.x, self.y
+        print('Using',math.floor(0.25*chop*self.X.shape[0]),'test samples.')
+        return self.x[rand+math.floor(0.25*chop*self.X.shape[0]):], self.y[rand+math.floor(0.25*chop*self.y.shape[0]):]
 
     """ Setter method: testing and training data after preprocessing """
     def set(self, X, Y, x, y, name=''):
@@ -79,16 +84,16 @@ class Dataset(object):
         self._save(name)
 
     """ Get sample count of each personality type """
-    def of_each(self, preproc=False):
+    def of_each(self):
         classes = ['INTJ', 'INTP', 'INFJ', 'INFP', 'ISTJ', 'ISTP', 'ISFJ',
                    'ISFP', 'ENTJ', 'ENTP', 'ENFJ', 'ENFP', 'ESTJ', 'ESTP',
                    'ESFJ', 'ESFP']
         for c in classes:
-            if preproc:
-                print(str(np.sum(self.Y == c.lower())), c, 'samples')
-            else:
-                print(str(np.sum(self.Y == c)), c, 'samples')
+            print(str(np.sum(self.Y == c)), c, 'samples')
 
     """ Get this target function """
-    def get_target(self, c):
+    def get_train_target(self, c):
         return self.Y[:,c]
+
+    def get_test_target(self, c):
+        return self.y[:,c]

@@ -60,7 +60,7 @@ The `lab4` directory contains the following files:
 For information about the other files in this directory, see the _Results_ section below.
 ### To Run
 1. Modify the `dataset.py` script to access the dataset(s) of your choice
-2. Compile the `__init__.py` program or the `regression_tree.py` program, or both to your preference.
+2. Compile the `__init__.py` program, or both to your preference.
 ### Datasets
 The datasets used for this program are provided by the instructor on the course webpage.
 ### Results
@@ -75,8 +75,24 @@ The `lab5` directory contains the following files:
 For information about the other files in this directory, see the _Results_ section below.
 ### To Run
 1. Modify the `dataset.py` script to access the dataset(s) of your choice
-2. Compile the `__init__.py` program or the `regression_tree.py` program, or both to your preference.
+2. Compile the `__init__.py` program, or both to your preference.
 ### Datasets
 The datasets used for this program are either provided by the instructor on the course webpage (solar particle and gamma ray) or imported via the keras library (MNIST and CIFAR-10).
 ### Results
 Experimental results for this assignment can be found in the `lab5\lab5.txt` file or, for specific runs, in the respective `lab5\results` directory containing `test##.txt` files.
+
+## Lab 6: Learning to Predict Sequences
+The `lab6` directory contains the following files:
+- `_instr.pdf` which contains the instructions for the assignment
+- `__init__.py` which is the main script to compile the program
+- `results-base.txt` which contains the accuracy results of the predictions by the baseline model
+- `results-lstm.txt` which contains the accuracy results of the predictions by the LSTM model
+- `results-conv.txt` which contains the accuracy results of the predictions by the convolutional model
+For information about the other files in this directory, see the _Results_ section below.
+### To Run
+1. Modify the `dataset.py` script to access the dataset(s) of your choice.
+2. Compile the `__init__.py` program.
+### Datasets
+The datasets used for this program are either provided by the instructor on the course webpage (solar dataset: `xrp.npy`).
+### Results
+Experimental results for this assignment can be found in the `npy` files. Accuracy results are presented in the `results-XXXX.txt` files.
