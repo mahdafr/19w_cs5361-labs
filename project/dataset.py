@@ -69,11 +69,26 @@ class Dataset(object):
     """ Getter methods: testing and training data """
     def train(self):
         print('Using',math.ceil(chop*self.X.shape[0]),'training samples.')
+        self.Y = self._representation(self.Y)
         return self.X[:rand+math.ceil(chop*self.X.shape[0])], self.Y[:rand+math.ceil(chop*self.Y.shape[0])]
 
     def test(self):
         print('Using',math.floor(0.25*chop*self.X.shape[0]),'test samples.')
+        self.y = self._representation(self.y)
         return self.x[rand+math.floor(0.25*chop*self.X.shape[0]):], self.y[rand+math.floor(0.25*chop*self.y.shape[0]):]
+
+    """  """
+    def _representation(self, y, one_hot=True):
+        if one_hot:
+            list(s.replace('E', '0') for s in y)
+            list(s.replace('I', '1') for s in y)
+            list(s.replace('S', '0') for s in y)
+            list(s.replace('N', '1') for s in y)
+            list(s.replace('F', '0') for s in y)
+            list(s.replace('T', '1') for s in y)
+            list(s.replace('P', '0') for s in y)
+            list(s.replace('J', '1') for s in y)
+        return y
 
     """ Setter method: testing and training data after preprocessing """
     def set(self, X, Y, x, y, name=''):

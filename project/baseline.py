@@ -40,11 +40,11 @@ def _urls_lower_lem_stem_stop(X, Y):
 
 """ Logistic regression """
 def build_model(data):
-    X, Y, x, y = emb.train(data, title+'_', first_time=True)
-    model = LogisticRegression(solver='lbfgs', max_iter=1000,multi_class='multinomial')
+    X, Y, x, y = emb.train(data, title+'_')
+    model = LogisticRegression(solver='lbfgs', max_iter=100,multi_class='multinomial')
     print('Classifier:\tLogistic Regression')
     for i in range(4):
-        print("Score:\t%f" % model.fit(X,data.get_train_target(i)).score(x,data.get_test_target(i)))
+        print("Score:\t%f" % model.fit(X,Y[i]).score(x,y[i]))
 
 if __name__=="__main__":
     data = dataset.Dataset(to_load=title+'.')

@@ -35,7 +35,7 @@ def _urls_lower_stem(X, Y):
 
 """ Naive Bayes' Models """
 def build_model_gauss(data):
-    X, Y, x, y = emb.train(data, title+'_', first_time=True)
+    X, Y, x, y = emb.train(data, title+'_')
     # todo change the parameters for tests
     pred(X,Y,x,y, GaussianNB(), name='Gaussian')
     pred(X,Y,x,y, MultinomialNB(), name='Multinomial')
