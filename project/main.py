@@ -4,6 +4,7 @@ from nltk.stem import PorterStemmer
 from nltk.tokenize import word_tokenize
 from sklearn.naive_bayes import GaussianNB, MultinomialNB
 from project import dataset, doc2vec as emb
+from sklearn.preprocessing import MinMaxScaler
 
 # fixme: change to dataset location
 d = "D:\\Google Drive\\skool\\CS 5361\\datasets\\project\\"
@@ -37,16 +38,25 @@ def _urls_lower_stem(X, Y):
 def build_model_gauss(data):
     X, Y, x, y = emb.train(data, title+'_', first_time=True)
     # todo change the parameters for tests
-    pred(X, x, data, GaussianNB(), name='Gaussian')
-    pred(X, x, data, MultinomialNB(), name='Multinomial')
+    # pred(X, x, data, GaussianNB(), name='Gaussian')
+    pred(*rescale(X,x), data, MultinomialNB(), name='Multinomial')
 
 """ Train and report on results """
 def pred(X, x, data, model, name=''):
     print('Classifier:', name)
+    score = []
     for i in range(4):
-        print("\t",str(i),"Score:\t%f" % model.fit(X,data.get_train_target(i)).score(x,data.get_test_target(i)))
+        score.append(model.fit(X,data.get_train_target(i)).score(x,data.get_test_target(i)))
+        print("\tTarget="+str(i),"Score:\t%f" % score[i])
+    print("Overall:",str(np.average(score)))
+
+""" Rescales the features for MNB """
+def rescale(X, x):
+    s = MinMaxScaler()
+    s.fit(np.append(X,x))
+    return s.transform(X), s.transform(x)
 
 if __name__=="__main__":
-    data = dataset.Dataset(to_load=title+'.', chop=0.001)
+    data = dataset.Dataset(to_load=title+'.', chop=0.0005)
     # second_run(data)
     build_model_gauss(data)

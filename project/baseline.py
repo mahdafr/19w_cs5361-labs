@@ -43,10 +43,13 @@ def build_model(data):
     X, Y, x, y = emb.train(data, title+'_', first_time=True)
     model = LogisticRegression(solver='lbfgs', max_iter=100,multi_class='multinomial')
     print('Classifier:\tLogistic Regression')
+    score = []
     for i in range(4):
-        print("\tScore:\t%f" % model.fit(X,data.get_train_target(i)).score(x,data.get_test_target(i)))
+        score.append(model.fit(X,data.get_train_target(i)).score(x,data.get_test_target(i)))
+        print("\tTarget="+str(i),"Score:\t%f" % score[i])
+    print("Overall:",str(np.average(score)))
 
 if __name__=="__main__":
-    data = dataset.Dataset(to_load=title+'.', chop=0.001)
+    data = dataset.Dataset(to_load=title+'.', chop=0.005)
     # second_run(data)
     build_model(data)

@@ -96,3 +96,8 @@ For information about the other files in this directory, see the _Results_ secti
 The datasets used for this program are either provided by the instructor on the course webpage (solar dataset: `xrp.npy`).
 ### Results
 Experimental results for this assignment can be found in the `npy` files. Accuracy results are presented in the `results-XXXX.txt` files.
+
+<details>
+    <summary> Final Project for CS5361 Machine Learning </summary>
+   
+</details>
