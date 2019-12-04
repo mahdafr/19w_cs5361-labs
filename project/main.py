@@ -35,17 +35,18 @@ def _urls_lower_stem(X, Y):
 
 """ Naive Bayes' Models """
 def build_model_gauss(data):
-    X, Y, x, y = emb.train(data, title+'_')
+    X, Y, x, y = emb.train(data, title+'_', first_time=True)
     # todo change the parameters for tests
-    pred(X,Y,x,y, GaussianNB(), name='Gaussian')
-    pred(X,Y,x,y, MultinomialNB(), name='Multinomial')
+    pred(X, x, data, GaussianNB(), name='Gaussian')
+    pred(X, x, data, MultinomialNB(), name='Multinomial')
 
-def pred(X,Y,x,y, model, name=''):
+""" Train and report on results """
+def pred(X, x, data, model, name=''):
     print('Classifier:', name)
     for i in range(4):
-        print("Score:\t%f" % model.fit(X,Y[:,i]).score(x,y[:,i]))
+        print("\t",str(i),"Score:\t%f" % model.fit(X,data.get_train_target(i)).score(x,data.get_test_target(i)))
 
 if __name__=="__main__":
-    data = dataset.Dataset(to_load=title+'.')
+    data = dataset.Dataset(to_load=title+'.', chop=0.001)
     # second_run(data)
     build_model_gauss(data)
