@@ -25,7 +25,7 @@ def train(d, title, first_time=False):
     return vector(model, X), Y, vector(model, x), y
 
 """ Train the model for a Doc2Vec embedding of input data """
-def _model(title, tag, epochs=100, v=10, alpha=0.025):
+def _model(title, tag, epochs=100, v=15, alpha=0.025):
     # https://medium.com/@mishra.thedeepak/doc2vec-simple
     # -implementation-example-df2afbbfbad5
     model = Doc2Vec(size=v, alpha=alpha, min_alpha=0.00025,

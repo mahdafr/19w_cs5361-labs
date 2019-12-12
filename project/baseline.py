@@ -50,6 +50,6 @@ def build_model(data):
     print("Overall:",str(np.average(score)))
 
 if __name__=="__main__":
-    data = dataset.Dataset(to_load=title+'.', chop=0.005)
+    data = dataset.Dataset(to_load=title+'.', chop=0.05)
     # second_run(data)
     build_model(data)

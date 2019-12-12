@@ -126,7 +126,7 @@ The `project` directory contains the following files:
 - `doc2vec.py` which contains the code to build a Doc2Vec embeddings for the dataset
 - `dataset.py` which contains the code to read and load the [dataset](https://www.kaggle.com/datasnaek/mbti-type) 
 ### To Run
-1. For the first run (in both `baseline.py` and `main.py`), modify the constructor to _Dataset_ to contain `first_time=False`. This will load the data in your system (make sure _d_ reflects your system configuration) and create _npy_ files for NumPy to use in future runs.
+1. For the first run (in both `baseline.py` and `main.py`), modify the constructor to _Dataset_ to contain `first_time=False`. This will load the data in your system (make sure _d_ in `dataset.py` reflects your system configuration) and create _npy_ files for NumPy to use in future runs.
 2. In the second run (in both `baseline.py` and `main.py`), remove the `first_time=False` modification we used in (1). Then, change the main method to call `second_run(...)`.
 3. In any future runs (in both `baseline.py` and `main.py`), comment out the line of code in (2), and run as normally.
 </details>

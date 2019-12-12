@@ -35,11 +35,11 @@ def _urls_lower_stem(X, Y):
     return np.array(nwX), np.array(nwY)
 
 """ Naive Bayes' Models """
-def build_model_gauss(data):
+def build_models(data):
     X, Y, x, y = emb.train(data, title+'_', first_time=True)
     # todo change the parameters for tests
-    # pred(X, x, data, GaussianNB(), name='Gaussian')
-    pred(*rescale(X,x), data, MultinomialNB(), name='Multinomial')
+    pred(X, x, data, GaussianNB(), name='Gaussian')
+    pred(*rescale(X,x), data, MultinomialNB(class_prior=0.6), name='Multinomial')
 
 """ Train and report on results """
 def pred(X, x, data, model, name=''):
@@ -53,10 +53,10 @@ def pred(X, x, data, model, name=''):
 """ Rescales the features for MNB """
 def rescale(X, x):
     s = MinMaxScaler()
-    s.fit(np.append(X,x))
+    s.fit(X)
     return s.transform(X), s.transform(x)
 
 if __name__=="__main__":
-    data = dataset.Dataset(to_load=title+'.', chop=0.0005)
+    data = dataset.Dataset(to_load=title+'.', chop=0.05)
     # second_run(data)
-    build_model_gauss(data)
+    build_models(data)
